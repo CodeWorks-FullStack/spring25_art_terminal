@@ -12,6 +12,8 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
+    // NOTE the ":" denotes that this route requires a route parameter. The name that you give the parameter will be used for the props that you pass to RouterLink and how you access it from the route inside of a vue component
+    // a route parameter lets us store some kind of value in the URL that we can access in the component
     path: '/profile/:profileId',
     name: 'Profile Details',
     component: loadPage('ProfilePage')

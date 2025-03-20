@@ -30,6 +30,7 @@ function logout() {
         </div>
         <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" role="menu" title="account menu">
           <div class="list-group">
+            <!-- NOTE have to use a v-if here instead of an elvis operator, because route params cannot be null or undefined -->
             <RouterLink v-if="account" :to="{ name: 'Profile Details', params: { profileId: account.id } }">
               <div class="list-group-item dropdown-item list-group-item-action">
                 Your Profile

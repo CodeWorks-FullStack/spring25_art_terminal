@@ -8,6 +8,7 @@ class ProfilesService {
     AppState.activeProfile = null // clears ghost data from appstate
     const response = await api.get(`api/profiles/${profileId}`)
     logger.log('GOT PROFILE BY ID', response.data)
+    // NOTE this model should work with a profile object from the sandbox as well as an account object from the sandbox
     const profile = new Account(response.data)
     AppState.activeProfile = profile
   }

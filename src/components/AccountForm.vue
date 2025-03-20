@@ -18,6 +18,7 @@ const editableAccountData = ref({
 onMounted(() => {
   const account = AppState.account
   // the spread operator (...) here BREAKS REFERENCE to the AppState object
+  // creates a new object with all of the properties from the account object (copy)
   editableAccountData.value = { ...account }
 })
 

@@ -26,6 +26,7 @@ watch(route, () => {
 
 async function getProfileById() {
   try {
+    // NOTE accesses our route parameter from the url
     const profileId = route.params.profileId
     await profilesService.getProfileById(profileId)
   } catch (error) {
@@ -59,6 +60,7 @@ async function getProjectsByCreatorId() {
               <h1 class="mb-2">
                 <span v-if="profile.graduated" class="mdi mdi-palette mdi-spin text-indigo"
                   title="Graduated Art School"></span>
+                <!-- NOTE creates a link using a URL from the profile data -->
                 <a v-if="profile.resume" :href="profile.resume" class="text-light" title="Go check out my resume!"
                   target="_blank">
                   <span class="mdi mdi-file-cad"></span>
@@ -75,12 +77,14 @@ async function getProjectsByCreatorId() {
       <div class="col-10">
         <div class="row">
           <div v-for="project in profileProjects" :key="project.id" class="col-md-4">
+            <!-- NOTE reusable components! -->
             <ProjectCard :projectProp="project" />
           </div>
         </div>
       </div>
     </div>
   </section>
+  <!-- NOTE placeholder for when the profile is still loading -->
   <section v-else class="container">
     <div class="row">
       <div class="col-12">

@@ -7,6 +7,7 @@ class ProjectsService {
   setActiveProject(project) {
     AppState.activeProject = project
   }
+  // NOTE clears out potential ghost data in the appstate
   clearProjects() {
     AppState.projects = []
   }
@@ -22,6 +23,7 @@ class ProjectsService {
     const response = await api.get(`api/projects?creatorId=${creatorId}`)
     logger.log('GOT PROJECTS', response.data)
     const projects = response.data.map(pojo => new Project(pojo))
+    // NOTE okay to reuse this array, might make our lives easier
     AppState.projects = projects
   }
 }

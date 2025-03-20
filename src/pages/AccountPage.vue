@@ -9,6 +9,7 @@ const account = computed(() => AppState.account)
 
 <template>
   <div class="about">
+    <!-- NOTE important that anything that uses the account is contained in this v-if -->
     <div v-if="account">
       <div class="container">
         <div class="row">
@@ -17,7 +18,7 @@ const account = computed(() => AppState.account)
           </div>
           <div class="col-md-6">
             <div class="text-center">
-              <h1>Welcome {{ account.name }}</h1>
+              <h2>Welcome {{ account.name }}</h2>
               <img class="rounded" :src="account.picture" alt="" />
               <p>{{ account.email }}</p>
             </div>

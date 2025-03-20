@@ -16,7 +16,7 @@ import ProjectModal from './components/ProjectModal.vue';
     Made with <i class="mdi mdi-heart text-pink"></i> by CodeWorks
   </footer>
 
-  <!-- NOTE project modal is accessible on very page now! -->
+  <!-- NOTE project modal is accessible on every page now! -->
   <ProjectModal />
 </template>
 

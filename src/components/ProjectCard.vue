@@ -28,13 +28,17 @@ function setActiveProject() {
         <p class="card-title fs-5">{{ projectProp.title }}</p>
         <div class="card-text">
           <p>Images: {{ projectProp.projectImgs.length }}</p>
+          <!-- NOTE data-bs-target's value matches the id attribute on the modal we want this to open -->
           <button @click="setActiveProject()" class="btn btn-indigo" data-bs-toggle="modal"
             data-bs-target="#projectModal" type="button">
             Browse Images
           </button>
         </div>
       </div>
+      <!-- NOTE this div will not show up on the profile page -->
       <div v-if="route.name != 'Profile Details'">
+        <!-- NOTE if the route that this RouterLink points at has a route parameter, you must supply a value for it  -->
+        <!-- NOTE we can store the id of the project's creator in the url for the profile page so we can use it for network requests -->
         <RouterLink :to="{ name: 'Profile Details', params: { profileId: projectProp.creatorId } }">
           <img :src="projectProp.creator.picture" :alt="projectProp.creator.name" class="creator-img round-img"
             :title="`Go to ${projectProp.creator.name}'s profile page`">
