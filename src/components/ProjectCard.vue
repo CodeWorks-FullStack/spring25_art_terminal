@@ -8,7 +8,13 @@ defineProps({
 
 
 <template>
-  {{ projectProp.title }}
+  <div class="card mb-3">
+    <img :src="projectProp.coverImg" class="card-img-top" :alt="`Cover image for the ${projectProp.title} project`">
+    <div class="card-body">
+      <p class="card-title fs-5">{{ projectProp.title }}</p>
+      <p class="card-text"></p>
+    </div>
+  </div>
 </template>
 
 
