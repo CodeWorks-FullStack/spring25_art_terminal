@@ -1,17 +1,29 @@
 <script setup>
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
+import AccountForm from '@/components/AccountForm.vue';
 
 const account = computed(() => AppState.account)
 
 </script>
 
 <template>
-  <div class="about text-center">
+  <div class="about">
     <div v-if="account">
-      <h1>Welcome {{ account.name }}</h1>
-      <img class="rounded" :src="account.picture" alt="" />
-      <p>{{ account.email }}</p>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <AccountForm />
+          </div>
+          <div class="col-md-6">
+            <div class="text-center">
+              <h1>Welcome {{ account.name }}</h1>
+              <img class="rounded" :src="account.picture" alt="" />
+              <p>{{ account.email }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div v-else>
       <h1>Loading... <i class="mdi mdi-loading mdi-spin"></i></h1>

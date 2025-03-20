@@ -4,6 +4,7 @@ import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 
 class AccountService {
+
   async getAccount() {
     try {
       const res = await api.get('/account')
@@ -11,6 +12,11 @@ class AccountService {
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
+  }
+
+  async updateAccount(accountData) {
+    const response = await api.put('/account', accountData)
+    logger.log('UPDATED ACCOUNT', response.data)
   }
 }
 
