@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { profilesService } from '@/services/ProfilesService.js';
+import { projectsService } from '@/services/ProjectsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
@@ -13,6 +14,7 @@ const route = useRoute()
 
 onMounted(() => {
   getProfileById()
+  getProjectsByCreatorId()
 })
 
 async function getProfileById() {
@@ -22,6 +24,16 @@ async function getProfileById() {
   } catch (error) {
     Pop.error(error, 'Could not get profile')
     logger.error('COULD NOT GET PROFILE', error)
+  }
+}
+
+async function getProjectsByCreatorId() {
+  try {
+    const profileId = route.params.profileId
+    await projectsService.getProjectsByCreatorId(profileId)
+  } catch (error) {
+    Pop.error(error, 'Could not get projects')
+    logger.error('COULD NOT GET PROJECTS', error)
   }
 }
 </script>
