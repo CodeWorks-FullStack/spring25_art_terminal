@@ -2,12 +2,17 @@
 import { Project } from '@/models/Project.js';
 import { projectsService } from '@/services/ProjectsService.js';
 
-defineProps({
+// NOTE if you want to access props directly in your script, you must assign the returned value from defineProps to a variable
+const props = defineProps({
   projectProp: { type: Project, required: true }
 })
 
-function setActiveProject(project) {
-  projectsService.setActiveProject(project)
+// function setActiveProject(project) {
+//   projectsService.setActiveProject(project)
+// }
+
+function setActiveProject() {
+  projectsService.setActiveProject(props.projectProp)
 }
 </script>
 
@@ -20,7 +25,7 @@ function setActiveProject(project) {
         <p class="card-title fs-5">{{ projectProp.title }}</p>
         <div class="card-text">
           <p>Images: {{ projectProp.projectImgs.length }}</p>
-          <button @click="setActiveProject(projectProp)" class="btn btn-indigo" data-bs-toggle="modal"
+          <button @click="setActiveProject()" class="btn btn-indigo" data-bs-toggle="modal"
             data-bs-target="#projectModal" type="button">
             Browse Images
           </button>
