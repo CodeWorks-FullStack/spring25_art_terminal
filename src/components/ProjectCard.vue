@@ -1,11 +1,14 @@
 <script setup>
 import { Project } from '@/models/Project.js';
 import { projectsService } from '@/services/ProjectsService.js';
+import { useRoute } from 'vue-router';
 
 // NOTE if you want to access props directly in your script, you must assign the returned value from defineProps to a variable
 const props = defineProps({
   projectProp: { type: Project, required: true }
 })
+
+const route = useRoute()
 
 // function setActiveProject(project) {
 //   projectsService.setActiveProject(project)
@@ -31,10 +34,12 @@ function setActiveProject() {
           </button>
         </div>
       </div>
-      <RouterLink :to="{ name: 'Profile Details', params: { profileId: projectProp.creatorId } }">
-        <img :src="projectProp.creator.picture" :alt="projectProp.creator.name" class="creator-img round-img"
-          :title="`Go to ${projectProp.creator.name}'s profile page`">
-      </RouterLink>
+      <div v-if="route.name != 'Profile Details'">
+        <RouterLink :to="{ name: 'Profile Details', params: { profileId: projectProp.creatorId } }">
+          <img :src="projectProp.creator.picture" :alt="projectProp.creator.name" class="creator-img round-img"
+            :title="`Go to ${projectProp.creator.name}'s profile page`">
+        </RouterLink>
+      </div>
     </div>
   </div>
 </template>

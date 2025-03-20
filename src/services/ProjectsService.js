@@ -7,13 +7,18 @@ class ProjectsService {
   setActiveProject(project) {
     AppState.activeProject = project
   }
+  clearProjects() {
+    AppState.projects = []
+  }
   async getProjects() {
+    this.clearProjects()
     const response = await api.get('api/projects')
     logger.log('GOT PROJECTS', response.data)
     const projects = response.data.map(pojo => new Project(pojo))
     AppState.projects = projects
   }
   async getProjectsByCreatorId(creatorId) {
+    this.clearProjects()
     const response = await api.get(`api/projects?creatorId=${creatorId}`)
     logger.log('GOT PROJECTS', response.data)
     const projects = response.data.map(pojo => new Project(pojo))
