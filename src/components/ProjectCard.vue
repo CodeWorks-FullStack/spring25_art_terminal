@@ -32,7 +32,7 @@ function setActiveProject() {
         </div>
       </div>
       <RouterLink :to="{ name: 'Profile Details', params: { profileId: projectProp.creatorId } }">
-        <img :src="projectProp.creator.picture" :alt="projectProp.creator.name" class="creator-img"
+        <img :src="projectProp.creator.picture" :alt="projectProp.creator.name" class="creator-img round-img"
           :title="`Go to ${projectProp.creator.name}'s profile page`">
       </RouterLink>
     </div>
@@ -43,9 +43,7 @@ function setActiveProject() {
 <style lang="scss" scoped>
 .creator-img {
   height: 6em;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  object-fit: cover;
+
 }
 
 .card-img-top {

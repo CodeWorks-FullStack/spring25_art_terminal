@@ -9,5 +9,7 @@ export const AppState = reactive({
   /** @type {import('./models/Project.js').Project[]} projects from database*/
   projects: [],
   /** @type {import('./models/Project.js').Project} project from database*/
-  activeProject: null
+  activeProject: null,
+  /** @type {import('./models/Account.js').Account} ANOTHER PERSON POTENTIALLY SEPARATE FROM THE LOGGED IN USER from the database*/
+  activeProfile: null
 })
