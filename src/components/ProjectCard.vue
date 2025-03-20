@@ -1,9 +1,14 @@
 <script setup>
 import { Project } from '@/models/Project.js';
+import { projectsService } from '@/services/ProjectsService.js';
 
 defineProps({
   projectProp: { type: Project, required: true }
 })
+
+function setActiveProject(project) {
+  projectsService.setActiveProject(project)
+}
 </script>
 
 
@@ -15,7 +20,8 @@ defineProps({
         <p class="card-title fs-5">{{ projectProp.title }}</p>
         <div class="card-text">
           <p>Images: {{ projectProp.projectImgs.length }}</p>
-          <button class="btn btn-indigo">
+          <button @click="setActiveProject(projectProp)" class="btn btn-indigo" data-bs-toggle="modal"
+            data-bs-target="#projectModal" type="button">
             Browse Images
           </button>
         </div>
