@@ -31,8 +31,10 @@ function setActiveProject() {
           </button>
         </div>
       </div>
-      <img :src="projectProp.creator.picture" :alt="projectProp.creator.name" class="creator-img"
-        :title="projectProp.creator.name">
+      <RouterLink :to="{ name: 'Profile Details', params: { profileId: projectProp.creatorId } }">
+        <img :src="projectProp.creator.picture" :alt="projectProp.creator.name" class="creator-img"
+          :title="`Go to ${projectProp.creator.name}'s profile page`">
+      </RouterLink>
     </div>
   </div>
 </template>
