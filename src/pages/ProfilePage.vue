@@ -50,7 +50,18 @@ async function getProjectsByCreatorId() {
           :style="{ backgroundImage: `url(${profile.coverImg})` }">
           <div>
             <img :src="profile.picture" :alt="'A pretty picture of ' + profile.name" class="round-img profile-img my-2">
-            <h1 class="mb-2">{{ profile.name }}</h1>
+            <div class="text-shadow">
+              <h1 class="mb-2">
+                <span v-if="profile.graduated" class="mdi mdi-palette mdi-spin text-indigo"
+                  title="Graduated Art School"></span>
+                <a v-if="profile.resume" :href="profile.resume" class="text-light" title="Go check out my resume!"
+                  target="_blank">
+                  <span class="mdi mdi-file-cad"></span>
+                </a>
+                {{ profile.name }}
+              </h1>
+              <p><b>{{ profile.bio }}</b></p>
+            </div>
           </div>
         </div>
       </div>
@@ -90,7 +101,7 @@ async function getProjectsByCreatorId() {
   min-height: 70dvh;
 }
 
-h1 {
+.text-shadow {
   text-shadow: 1px 1px 5px var(--bs-code-color);
 }
 </style>
