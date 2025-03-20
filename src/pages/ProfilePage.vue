@@ -19,6 +19,9 @@ onMounted(() => {
   getProjectsByCreatorId()
 })
 
+// NOTE watch will observe a watchable object (ref, computed, reactive) for changes, and it will run the supplied callback function (2nd argument) whenever that value changes
+// NOTE this allows us to watch the route parameter for changes so we can get our required content
+
 watch(route, () => {
   getProfileById()
   getProjectsByCreatorId()
