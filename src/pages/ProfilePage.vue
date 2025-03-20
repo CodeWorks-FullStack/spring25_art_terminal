@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import ProjectCard from '@/components/ProjectCard.vue';
 import { profilesService } from '@/services/ProfilesService.js';
 import { projectsService } from '@/services/ProjectsService.js';
 import { logger } from '@/utils/Logger.js';
@@ -8,6 +9,7 @@ import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const profile = computed(() => AppState.activeProfile)
+const profileProjects = computed(() => AppState.projects)
 
 // NOTE useRoute returns an object that has information about our current route
 const route = useRoute()
@@ -49,6 +51,15 @@ async function getProjectsByCreatorId() {
           <div>
             <img :src="profile.picture" :alt="'A pretty picture of ' + profile.name" class="round-img profile-img my-2">
             <h1 class="mb-2">{{ profile.name }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div class="row">
+          <div v-for="project in profileProjects" :key="project.id" class="col-md-4">
+            <ProjectCard :projectProp="project" />
           </div>
         </div>
       </div>
