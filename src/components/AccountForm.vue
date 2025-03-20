@@ -1,8 +1,9 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { accountService } from '@/services/AccountService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const editableAccountData = ref({
   name: '',
@@ -11,6 +12,13 @@ const editableAccountData = ref({
   picture: '',
   resume: '',
   graduated: false,
+})
+
+// NOTE this would not work if the account in the AppState was null!
+onMounted(() => {
+  const account = AppState.account
+  // the spread operator (...) here BREAKS REFERENCE to the AppState object
+  editableAccountData.value = { ...account }
 })
 
 async function updateAccount() {
